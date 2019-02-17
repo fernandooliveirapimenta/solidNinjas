@@ -1,4 +1,4 @@
-package com.fernando;
+package com.fernando.rest;
 
 import com.fernando.cap3.NotaFiscal;
 import org.springframework.web.bind.annotation.GetMapping;
