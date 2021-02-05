@@ -1,67 +1,57 @@
 package com.alura.rh.model;
 
-import com.alura.rh.ValidacaoException;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 
 public class Funcionario {
 
-	private String nome;
-	private String cpf;
-	private Cargo cargo;
-	private BigDecimal salario;
+	private DadosPessoais dadosPessoais;
 	private LocalDate dataUltimoReajuste;
 
 	public Funcionario(String nome, String cpf, Cargo cargo, BigDecimal salario) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.cargo = cargo;
-		this.salario = salario;
+		dadosPessoais = new DadosPessoais(nome, cpf, cargo, salario);
 	}
 
-	public void reajustarSalario(BigDecimal aumento) {
-		BigDecimal percentualReajuste = aumento.divide(salario, RoundingMode.HALF_UP);
-		if (percentualReajuste.compareTo(new BigDecimal("0.4")) > 0) {
-			throw new ValidacaoException("Reajuste nao pode ser superior a 40% do salario!");
-		}
-		this.salario = this.salario.add(aumento);
+	public void atualizarSalario(BigDecimal aumento) {
+	    // Aumentando a coesao removendo coisa daqui
+//		BigDecimal percentualReajuste = aumento.divide(salario, RoundingMode.HALF_UP);
+//		if (percentualReajuste.compareTo(new BigDecimal("0.4")) > 0) {
+//			throw new ValidacaoException("Reajuste nao pode ser superior a 40% do salario!");
+//		}
+//		this.salario = this.salario.add(aumento);
+        dadosPessoais.setSalario(aumento);
 		this.dataUltimoReajuste = LocalDate.now();
 	}
 
-	public String getNome() {
-		return nome;
+	public DadosPessoais getDadosPessoais() {
+		return dadosPessoais;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDadosPessoais(DadosPessoais dadosPessoais) {
+		this.dadosPessoais = dadosPessoais;
 	}
+
+	public String getNome() {
+		return dadosPessoais.getNome();
+	}
+
 
 	public String getCpf() {
-		return cpf;
+		return dadosPessoais.getCpf();
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 
 	public Cargo getCargo() {
-		return cargo;
+		return dadosPessoais.getCargo();
 	}
 
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
-	}
 
 	public BigDecimal getSalario() {
-		return salario;
+		return dadosPessoais.getSalario();
 	}
 
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
-	}
 
 	public LocalDate getDataUltimoReajuste() {
 		return dataUltimoReajuste;
@@ -70,5 +60,11 @@ public class Funcionario {
 	public void setDataUltimoReajuste(LocalDate dataUltimoReajuste) {
 		this.dataUltimoReajuste = dataUltimoReajuste;
 	}
+
+	public void promover(Cargo novoCargo) {
+		dadosPessoais.setCargo(novoCargo);;
+	}
+
+
 
 }

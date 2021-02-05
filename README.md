@@ -1,7 +1,10 @@
 #### SOLID
 ````
-S ==> single responsablity principle
-O ==> open closed principle principle
+S ==> single responsablity principle (
+      Uma classe (ou módulo, função, etc) deve ter um e apenas um motivo para mudar)
+O ==> open closed principle principle 
+      (Isso significa que devemos poder criar novas funcionalidades e estender o 
+          sistema sem precisar modificar muitas classes já existentes)
 L ==> liskiv substituition principle
 I ==> interface segregation principle
 D ==> dependency inversion principle
